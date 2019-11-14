@@ -18,6 +18,9 @@ const Login = ({values}) => {
             <label className="userinfo">Password
             <Field type="text" name="pw" placeholder="insert password"/>
             </label>
+            <label className="checkbox">Policy Agreement
+            <Field type='checkbox' name="policy" checked={values.policy}/>
+            </label>
             <button type="submit">Submit</button>
             </Form>
         </div>
@@ -25,11 +28,12 @@ const Login = ({values}) => {
 }
 
 const FormikLogin = withFormik({
-    mapPropsToValues({name, email, pw}){
+    mapPropsToValues({name, email, pw, policy}){
         return{
             name: name || "",
             email: email || "",
-            pw: pw || ""
+            pw: pw || "",
+            policy: policy || false
         }
     }
 })(Login);
