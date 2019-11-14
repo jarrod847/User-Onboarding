@@ -1,7 +1,19 @@
 import React, {useState, useEffect} from "react"
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
-import axios from "axios"
+import axios from "axios";
+import styled from "styled-components"
+
+const StyledForm = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-evenly;
+`;
+
+
+
+
 
 
 
@@ -14,6 +26,8 @@ const Login = ({values, errors, touched, status}) => {
             setUser([...user, status])
         }
     }, [status]);
+
+
     
 
 
@@ -21,23 +35,25 @@ const Login = ({values, errors, touched, status}) => {
         <div>
             <h2>Login</h2>
             <Form>
-            <label className="userinfo">Name
-            <Field type="text" name="name" placeholder="insert name"/>
-            {touched.name && errors.name && (<p className="error">{errors.name}</p>)}
-            </label>
-            <label className="userinfo">Email
-            <Field type="text" name="email" placeholder="insert email"/>
-            {touched.email && errors.email && (<p className="error">{errors.email}</p>)}
-            </label>
-            <label className="userinfo">Password
-            <Field type="text" name="pw" placeholder="insert password"/>
-            {touched.pw && errors.pw && (<p className="error">{errors.pw}</p>)}
-            </label>
-            <label className="checkbox">Policy Agreement
-            <Field type='checkbox' name="policy" checked={values.policy}/>
-            {touched.policy && errors.policy && (<p className="error">{errors.policy}</p>)}
-            </label>
-            <button type="submit">Submit</button>
+                <StyledForm>
+                    <label className="userinfo">Name
+                    <Field type="text" name="name" placeholder="insert name"/>
+                    {touched.name && errors.name && (<p className="error">{errors.name}</p>)}
+                    </label>
+                    <label className="userinfo">Email
+                    <Field type="text" name="email" placeholder="insert email"/>
+                    {touched.email && errors.email && (<p className="error">{errors.email}</p>)}
+                    </label>
+                    <label className="userinfo">Password
+                    <Field type="text" name="pw" placeholder="insert password"/>
+                    {touched.pw && errors.pw && (<p className="error">{errors.pw}</p>)}
+                    </label>
+                    <label className="checkbox">Policy Agreement
+                    <Field type='checkbox' name="policy" checked={values.policy}/>
+                    {touched.policy && errors.policy && (<p className="error">{errors.policy}</p>)}
+                    </label>
+                    <button type="submit">Submit</button>        
+                </StyledForm>
             </Form>
 
             {user.map(person => (
@@ -47,8 +63,8 @@ const Login = ({values, errors, touched, status}) => {
                     <li>Password: {person.password}</li>
                 </ul>
             ))}
+
         </div>
-        
 
     
     )
